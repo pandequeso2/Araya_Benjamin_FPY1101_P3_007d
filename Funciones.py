@@ -79,7 +79,39 @@ def buscar_rut():
             else:
                 print('ERROR, EL RUT NO EXISTE...')
 def imprimir_csv():
-    pass
+    if not ventas:
+        print('la lista de ventas esta vacia, ve a la opcion 1 primero...')
+    else:
+        sector=input('Ingrese el secor de donde realiza el pedido(Santiago, Pucon, Pirque): ').capitalize()
+        if sector=='Santiago'.capitalize():
+            nom_archivo=input('Ingrese el nombre de el archivo: ')+'.csv'
+            import csv
+            try:
+                with open(nom_archivo,'x') as archivo:
+                    escritor=csv.writer(archivo)
+                    escritor.writerows(ventas)
+            except:
+                print('El nombre de el archivo y esiste...')
+        elif sector=='Pucon'.capitalize():
+            nom_archivo=input('Ingrese el nombre de el archivo: ')+'.csv'
+            import csv
+            try:
+                with open(nom_archivo,'x') as archivo:
+                    escritor=csv.writer(archivo)
+                    escritor.writerows(ventas)
+            except:
+                print('El nombre de el archivo y esiste...')
+        elif sector=='Pirque'.capitalize():
+            nom_archivo=input('Ingrese el nombre de el archivo: ')+'.csv'
+            import csv
+            try:
+                with open(nom_archivo,'x') as archivo:
+                    escritor=csv.writer(archivo)
+                    escritor.writerows(ventas)
+            except:
+                print('El nombre de el archivo y esiste...')                 
+        else:
+            print('ERROR, DEBES INGRESAR UN SECTOR...')
 def salir():
     print('ADIOOOS...')
     exit()
