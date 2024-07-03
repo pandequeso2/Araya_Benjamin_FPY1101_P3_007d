@@ -61,7 +61,26 @@ def listar_pedido():
             print('Ingrese una tecla para continuar....')
             msvcrt.getch()
 def buscar_rut():
-    pass
+    if not ventas:
+        print('La lista de ventas esta vacia, ve a la opcion 1 primero.')
+    else:
+        rut_buscar=validar_rut_buscar()
+        for v in ventas:
+            if rut_buscar==v[0]:
+                print(f'Rut: {v[0]}')
+                print(f'Nombre: {v[1]}')
+                print(f'Dirección: {v[2]}')
+                print(f'Comuna: {v[3]}')
+                print(f'Cantidad 5 kilos: {v[4]}')
+                print(f'Cantidad 15 kilos: {v[5]}')
+                print(f'Pago total: ${v[6]}')
+                print('Ingrese una tecla para continuar....')
+                msvcrt.getch()
+            else:
+                print('ERROR, EL RUT NO EXISTE...')
+
+
+
 def imprimir_csv():
     pass
 def salir():
@@ -141,5 +160,14 @@ def validar_cant():
                 print('ERROR, ingrese un numero mayor o igual que 0...')
         except:
             print('ERROR, DEBE SER UN NÚMERO ENTERO.')
-
+def validar_rut_buscar():
+    while True:
+        try:
+            rut=int(input('Ingrese su rut a buscar(sin puntos ni digito verificador): '))
+            if len(str(rut))==9 and rut>0:
+                return rut
+            else:
+                print('ERROR, el rut debe tener 9 digitos y debe ser mayor a 0...')
+        except:
+            print('ERROR, debe ser un número entero...') 
 
