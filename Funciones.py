@@ -17,27 +17,49 @@ def registrar_pedido():
         os.system('cls')
         if opc==1:
             print('El valor de 5 kilos es de $12.500.')
-            cant=int(input('Ingrese la cantidad de cilindos: '))
-            compra_5=cant*12500
-            time.sleep(2)
-            
+            cant=validar_can()
+            if cant==0:
+                compra_5=0
+            else:
+                compra_5=cant*12500
+                time.sleep(2)
         elif opc==2:
             print('Valor de cilindro de 15 kilos es $25.500')
-            canti=int(input('Ingresa la cantidad de productos: '))
-            compra_15=canti*12500
-            time.sleep(2)
+            canti=validar_cant()
+            if canti ==0:
+                compra_15=0
+            else:
+                compra_15=canti*12500
+                time.sleep(2)
         else:
-            pago=compra_5+compra_15
-            print(f'El total de la compra es: {pago}')
-            print('Ingrese una tecla para continuar')
-            msvcrt.getch()
-            break
+            if compra_5==0 or compra_15==0:
+                print('Debes comprar algo... ')
+                time.sleep(1)
+            else:    
+                pago=compra_5+compra_15
+                print(f'El total de la compra es: {pago}')
+                print('Ingrese una tecla para continuar...')
+                msvcrt.getch()
+                break
     venta=[rut,nombre,direccion,comuna,cant,canti,pago]
     ventas.append(venta)
     time.sleep(1)
     print('Pedido realizado...')    
 def listar_pedido():
-    pass
+    if not ventas:
+        print('La lista de ventas esta vacia, ve a la opción 1 primero.')
+        time.sleep(2)
+    else:
+        for v in ventas:
+            print(f'Rut: {v[0]}')
+            print(f'Nombre: {v[1]}')
+            print(f'Dirección: {v[2]}')
+            print(f'Comuna: {v[3]}')
+            print(f'Cantidad 5 kilos: {v[4]}')
+            print(f'Cantidad 15 kilos: {v[5]}')
+            print(f'Pago total: ${v[6]}')
+            print('Ingrese una tecla para continuar....')
+            msvcrt.getch()
 def buscar_rut():
     pass
 def imprimir_csv():
@@ -99,7 +121,25 @@ def validar_opc_2():
                 print('ERROR, no esta dentro de las opciónes...')
         except:
             print('ERROR, DEBE SER UN NÚMERO ENTERO...') 
-
-
+def validar_can():
+    while True:
+        try:
+            can=int(input('Ingrese la cantidad de cilindros: '))
+            if can >=0:
+                return can
+            else:
+                print('ERROR, ingrese un numero mayor o igual que 0...')
+        except:
+            print('ERROR, DEBE SER UN NÚMERO ENTERO.')    
+def validar_cant():
+    while True:
+        try:
+            can=int(input('Ingrese la cantidad de cilindros: '))
+            if can >=0:
+                return can
+            else:
+                print('ERROR, ingrese un numero mayor o igual que 0...')
+        except:
+            print('ERROR, DEBE SER UN NÚMERO ENTERO.')
 
 
