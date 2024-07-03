@@ -90,6 +90,7 @@ def imprimir_csv():
                 with open(nom_archivo,'x') as archivo:
                     escritor=csv.writer(archivo)
                     escritor.writerows(ventas)
+                print('Archivo Creado...')    
             except:
                 print('El nombre de el archivo y esiste...')
         elif sector=='Pucon'.capitalize():
@@ -99,6 +100,7 @@ def imprimir_csv():
                 with open(nom_archivo,'x') as archivo:
                     escritor=csv.writer(archivo)
                     escritor.writerows(ventas)
+                print('Archivo creado...')    
             except:
                 print('El nombre de el archivo y esiste...')
         elif sector=='Pirque'.capitalize():
@@ -108,6 +110,7 @@ def imprimir_csv():
                 with open(nom_archivo,'x') as archivo:
                     escritor=csv.writer(archivo)
                     escritor.writerows(ventas)
+                print('Archivo creado...')    
             except:
                 print('El nombre de el archivo y esiste...')                 
         else:
