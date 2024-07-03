@@ -78,9 +78,6 @@ def buscar_rut():
                 msvcrt.getch()
             else:
                 print('ERROR, EL RUT NO EXISTE...')
-
-
-
 def imprimir_csv():
     pass
 def salir():
