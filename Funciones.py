@@ -12,14 +12,15 @@ def registrar_pedido():
         os.system('cls')
         print('1. Cilindro 5 kilos')
         print('2. Cilindro 15 kilos ')
-        print('3. Salir y ver total.')
+        print('3. Ver total.')
+        print('4. Salir, si no quieres comprar nada')
         opc=validar_opc_2()
         os.system('cls')
         if opc==1:
             print('El valor de 5 kilos es de $12.500.')
             cant=validar_can()
             if cant==0:
-                compra_5=0
+                print('Debes comprar algo...')
             else:
                 compra_5=cant*12500
                 time.sleep(2)
@@ -27,20 +28,19 @@ def registrar_pedido():
             print('Valor de cilindro de 15 kilos es $25.500')
             canti=validar_cant()
             if canti ==0:
-                compra_15=0
+                print('Debes comprar algo...')
             else:
                 compra_15=canti*12500
                 time.sleep(2)
-        else:
-            if compra_5==0 or compra_15==0:
-                print('Debes comprar algo... ')
-                time.sleep(1)
-            else:    
+        elif opc==3:    
                 pago=compra_5+compra_15
                 print(f'El total de la compra es: {pago}')
                 print('Ingrese una tecla para continuar...')
                 msvcrt.getch()
-                break
+        else:
+            print('Adioos....')
+            break        
+
     venta=[rut,nombre,direccion,comuna,cant,canti,pago]
     ventas.append(venta)
     time.sleep(1)
@@ -82,9 +82,9 @@ def imprimir_csv():
     if not ventas:
         print('la lista de ventas esta vacia, ve a la opcion 1 primero...')
     else:
-        sector=input('Ingrese el secor de donde realiza el pedido(Santiago, Pucon, Pirque): ').capitalize()
+        sector=validar_sector()
         if sector=='Santiago'.capitalize():
-            nom_archivo=input('Ingrese el nombre de el archivo: ')+'.csv'
+            nom_archivo=nom_buscar()+'.csv'
             import csv
             try:
                 with open(nom_archivo,'x') as archivo:
@@ -94,7 +94,7 @@ def imprimir_csv():
             except:
                 print('El nombre de el archivo y esiste...')
         elif sector=='Pucon'.capitalize():
-            nom_archivo=input('Ingrese el nombre de el archivo: ')+'.csv'
+            nom_archivo=nom_buscar()+'.csv'
             import csv
             try:
                 with open(nom_archivo,'x') as archivo:
@@ -104,7 +104,7 @@ def imprimir_csv():
             except:
                 print('El nombre de el archivo y esiste...')
         elif sector=='Pirque'.capitalize():
-            nom_archivo=input('Ingrese el nombre de el archivo: ')+'.csv'
+            nom_archivo=nom_archivo()+'.csv'
             import csv
             try:
                 with open(nom_archivo,'x') as archivo:
@@ -166,7 +166,7 @@ def validar_opc_2():
     while True:
         try:
             opc=int(input('Ingrese un numero: '))
-            if opc in(1,2,3):
+            if opc in(1,2,3,4):
                 return opc
             else:
                 print('ERROR, no esta dentro de las opciónes...')
@@ -202,4 +202,19 @@ def validar_rut_buscar():
                 print('ERROR, el rut debe tener 9 digitos y debe ser mayor a 0...')
         except:
             print('ERROR, debe ser un número entero...') 
+def nom_buscar():
+    while True:
+        nom=input('Ingrese el nombre a buscar: ')
+        if len(nom.strip())>=3 and nom.isalpha():
+            return nom
+        else:
+            print('ERROR, DEBES INGRESAR AL MENOS 3 CARACTERES...')
+def validar_sector():
+    while True:
+        sector=input('Ingrese el secor de donde realiza el pedido(Santiago, Pucon, Pirque): ').capitalize()
+        if len(sector.strip()) >=3 and sector.isalpha():
+            return sector.capitalize()
+        else:
+            print('ERROR, DEBE TENER ALMENOS 3 CARACTERES...')
+
 
